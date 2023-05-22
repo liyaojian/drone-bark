@@ -13,7 +13,7 @@ func main() {
 	RepoName := os.Getenv("DRONE_REPO_NAME")
 	BuildStatus := os.Getenv("DRONE_BUILD_STATUS")
 
-	body := fmt.Sprintf("%s:%s", RepoName, BuildStatus)
+	body := fmt.Sprintf("[drone]%s:%s?group=drone", RepoName, BuildStatus)
 	reqUrl := fmt.Sprintf("%s/%s", key, body)
 
 	resp, err := http.Get(reqUrl)
