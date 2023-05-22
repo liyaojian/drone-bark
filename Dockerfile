@@ -14,12 +14,7 @@ WORKDIR /build
 COPY . .
 
 # 将我们的代码编译成二进制可执行文件 app
-RUN set -ex \
-    && apk upgrade \
-    && apk add gcc libc-dev git \
-    && export COMMIT_SHA=$(git rev-parse --short HEAD) \
-    && export VERSION=$(git describe --tags) \
-    && go build -o app -ldflags "-w -s" .
+RUN go build -o app -ldflags "-w -s" .
 
 ###################
 # 接下来创建一个小镜像
