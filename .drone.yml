@@ -1,0 +1,19 @@
+kind: pipeline
+name: default
+type: docker
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: liyaojian/drone-bark
+      tags: latest
+
+  - name: notification
+    image: liyaojian/drone-bark
+    settings:
+      key:
+        from_secret: bark_key
