@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -14,6 +15,7 @@ func main() {
 	//BuildStatus := os.Getenv("DRONE_BUILD_STATUS")
 	BuildLink := os.Getenv("DRONE_BUILD_LINK")
 	CommitMessage := os.Getenv("CI_COMMIT_MESSAGE")
+	CommitMessage = strings.TrimSuffix(CommitMessage, "\n")
 	CommitBranch := os.Getenv("CI_COMMIT_BRANCH")
 
 	body := fmt.Sprintf("[Drone] 仓库:%s,分支:%s,Commit:%s?url=%s&group=drone", RepoName, CommitBranch, CommitMessage, BuildLink)
