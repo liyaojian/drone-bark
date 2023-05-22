@@ -18,7 +18,7 @@ func main() {
 	CommitMessage = strings.TrimSuffix(CommitMessage, "\n")
 	CommitBranch := os.Getenv("CI_COMMIT_BRANCH")
 
-	body := fmt.Sprintf("[Drone] 仓库:%s,分支:%s,Commit:%s?url=%s&group=drone&level=timeSensitive", RepoName, CommitBranch, CommitMessage, BuildLink)
+	body := fmt.Sprintf("[Drone] 仓库:%s,分支:%s,修改:%s?url=%s&group=drone&level=timeSensitive", RepoName, CommitBranch, CommitMessage, BuildLink)
 	reqUrl := fmt.Sprintf("%s/%s", key, body)
 
 	resp, err := http.Get(reqUrl)
